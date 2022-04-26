@@ -9,8 +9,6 @@ namespace FIMSpace.FEditor
     public static class FGUI_Inspector
     {
         public static readonly RectOffset ZeroOffset = new RectOffset(0, 0, 0, 0);
-        public static Object LastObjSelected;
-        public static GameObject LastGameObjectSelected;
 
         public static void HeaderBox(ref bool foldout, string title, bool frame, Texture icon = null, int height = 20, int iconsSize = 19, bool big = false)
         {
@@ -50,7 +48,7 @@ namespace FIMSpace.FEditor
         public static void FoldHeaderStart(ref bool foldout, GUIContent title, GUIStyle textStyle, GUIStyle vertStyle, Texture icon = null, int height = 22)
         {
             if (vertStyle != null) GUILayout.BeginVertical(vertStyle);
-            if (GUILayout.Button(new GUIContent("   " + FGUI_Resources.GetFoldSimbol(foldout, 10, "►") + "  " + title.text, icon, title.tooltip), textStyle, GUILayout.Height(height))) foldout = !foldout;
+            if (GUILayout.Button(new GUIContent("  " + FGUI_Resources.GetFoldSimbol(foldout, 10, "►") + "  " + title.text, icon, title.tooltip), textStyle, GUILayout.Height(height))) foldout = !foldout;
         }
 
         /// <summary>
@@ -110,14 +108,6 @@ namespace FIMSpace.FEditor
             else
                 if (GUILayout.Button(new GUIContent(icon, tooltip), FGUI_Resources.ButtonStyle, new GUILayoutOption[2] { GUILayout.Width(width), GUILayout.Height(height) })) switcher = !switcher;
 
-            GUI.color = c;
-        }
-
-        public static void DrawSwitchButton(ref bool enable, string tooltip, Texture icon)
-        {
-            Color c = GUI.color;
-            GUI.color = enable ? new Color(0.9f, 0.9f, 0.9f, 1f) : c;
-            if (GUILayout.Button(new GUIContent(icon, tooltip), EditorStyles.miniButtonRight, new GUILayoutOption[2] { GUILayout.Width(20), GUILayout.Height(16) })) enable = !enable;
             GUI.color = c;
         }
 
@@ -222,38 +212,6 @@ namespace FIMSpace.FEditor
 
             return newStyle;
         }
-
-
-
-        public static void BeginHorizontal(GUIStyle style, Color color, bool bgColor = true)
-        {
-            Color c = bgColor ? GUI.backgroundColor : GUI.color;
-            if (bgColor) GUI.backgroundColor = color; else GUI.color = color;
-            EditorGUILayout.BeginHorizontal(style);
-            if (bgColor) GUI.backgroundColor = c; else GUI.color = c;
-        }
-
-        public static void BeginVertical(GUIStyle style, Color color, bool bgColor = true)
-        {
-            Color c = bgColor ? GUI.backgroundColor : GUI.color;
-            if (bgColor) GUI.backgroundColor = color; else GUI.color = color;
-            EditorGUILayout.BeginVertical(style);
-            if (bgColor) GUI.backgroundColor = c; else GUI.color = c;
-        }
-
-
-        public static void DrawBackToGameObjectButton()
-        {
-            if (LastGameObjectSelected == null) return;
-            if (GUILayout.Button("<- Go Back To " + LastGameObjectSelected.name, GUILayout.Height(26))) Selection.activeObject = LastGameObjectSelected;
-        }
-
-        public static void DrawBackToObjectButton()
-        {
-            if (LastObjSelected == null) return;
-            if (GUILayout.Button("<- Go Back To " + LastObjSelected.name, GUILayout.Height(26))) Selection.activeObject = LastObjSelected;
-        }
-
 
     }
 }
