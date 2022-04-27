@@ -62,7 +62,7 @@ namespace FIMSpace.FEditor
                 iterationDigits = EditorGUILayout.IntField(iterationDigits);
                 if (iterationDigits < 1) iterationDigits = 1;
 
-                GUILayout.Label("(" + FStringMethods.IntToString(1, iterationDigits) + ")");
+                GUILayout.Label("(" + IntToString(1, iterationDigits) + ")");
 
                 GUILayout.Label("Start from: ");
                 iterationStartFrom = EditorGUILayout.IntField(iterationStartFrom);
@@ -113,14 +113,14 @@ namespace FIMSpace.FEditor
                 if (!replaceMode) foreach (GameObject o in objects)
                     {
                         o.name = targetName;
-                        if (iterationMode) o.name += iterationPrefix + FStringMethods.IntToString(i, iterationDigits) + iterationSuffix;
+                        if (iterationMode) o.name += iterationPrefix + IntToString(i, iterationDigits) + iterationSuffix;
                         i++;
                     }
                 else
                     foreach (GameObject o in objects)
                     {
                         o.name = o.name.Replace(toBeReplaced, targetName);
-                        if (iterationMode) o.name += iterationPrefix + FStringMethods.IntToString(i, iterationDigits) + iterationSuffix;
+                        if (iterationMode) o.name += iterationPrefix + IntToString(i, iterationDigits) + iterationSuffix;
                         i++;
                     }
             }
@@ -137,9 +137,9 @@ namespace FIMSpace.FEditor
                         // We need to add iteration because there can be conflicts with same file names
 
                         if (!iterationMode)
-                            newName += FStringMethods.IntToString(i, iterationDigits);
+                            newName += IntToString(i, iterationDigits);
                         else
-                            newName += iterationPrefix + FStringMethods.IntToString(i, iterationDigits) + iterationSuffix;
+                            newName += iterationPrefix + IntToString(i, iterationDigits) + iterationSuffix;
 
                         i++;
                     }
@@ -147,7 +147,7 @@ namespace FIMSpace.FEditor
                     {
                         newName = newName.Replace(toBeReplaced, targetName);
 
-                        if (iterationMode) newName += iterationPrefix + FStringMethods.IntToString(i, iterationDigits) + iterationSuffix;
+                        if (iterationMode) newName += iterationPrefix + IntToString(i, iterationDigits) + iterationSuffix;
                         i++;
                     }
 
@@ -155,5 +155,15 @@ namespace FIMSpace.FEditor
                 }
             }
         }
+
+
+        public static string IntToString(int value, int signs)
+        {
+            string output = value.ToString();
+            int missingZeros = signs - output.Length;
+            if (missingZeros > 0) { string missing = "0"; for (int i = 1; i < missingZeros; i++) missing += 0; output = missing + output; }
+            return output;
+        }
+
     }
 }

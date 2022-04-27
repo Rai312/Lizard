@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyStateMachine : MonoBehaviour
 {
-    [SerializeField] private State _startState;
+    //[SerializeField] private State _startState;
 
     private State _currentState;
 
@@ -24,7 +24,7 @@ public class EnemyStateMachine : MonoBehaviour
 
     private void Start()
     {
-        Reset(_startState);
+        //Reset(_startState);
     }
 
     private void Reset(State startState)

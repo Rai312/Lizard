@@ -6,6 +6,9 @@ public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] private int _health;
 
+    //public 
+    public int Health => _health;
+
     public void TakeDamage(int damage)
     {
         _health -= AffectDamage(damage);
@@ -23,6 +26,6 @@ public abstract class Enemy : MonoBehaviour
 
     private void TryToDie()
     {
-        Debug.Log("EnemyDied");
+        
     }
 }
