@@ -5,10 +5,8 @@ using UnityEngine.Events;
 
 public class IceSkill : AttackSkill
 {
-    public event UnityAction ButtonClick;
-
-    protected override void OnSkillButton()
+    protected override void OnClickSkillButton()
     {
-        ButtonClick?.Invoke();
+        TongueAnimationController.IceAttack();//дубляж ли с классом?
     }
 }

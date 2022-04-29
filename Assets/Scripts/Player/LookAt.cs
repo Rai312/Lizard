@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
 
@@ -10,7 +7,8 @@ public class LookAt : MonoBehaviour
     [SerializeField] private MultiAimConstraint _multiAimConstraint;
     [SerializeField] private RigBuilder _rigBuilder;
 
-    public event UnityAction<Enemy> TargetFound;
+    public event UnityAction TargetFound;
+    public event UnityAction TargetLost;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -29,7 +27,7 @@ public class LookAt : MonoBehaviour
             Debug.Log("OnTriggerEnter");
             _rigBuilder.Build();
 
-            TargetFound?.Invoke(enemy);
+            TargetFound?.Invoke();
         }
     }
 
@@ -44,6 +42,7 @@ public class LookAt : MonoBehaviour
 
             _rigBuilder.Build();
             Debug.Log("OnTriggerExit");//MAGIC INT
+            TargetLost?.Invoke();
         }
     }
 }

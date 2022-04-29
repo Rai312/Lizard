@@ -1,23 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using DG.Tweening;
-using UnityEngine.UI;
-using UnityEngine.Events;
-//using TMPro;
-
-
-public class FireSkill : MonoBehaviour
+public class FireSkill : AttackSkill//тут сделать при нажатие кнопки анимаци и отдельно классы с свойствами скила
 {
-    public event UnityAction ButtonClick;
-
-    public void Attack(Enemy enemy)//подумать нужно ли что то переавать в паблик 
-    {//подумать над названием метода
-        //Debug.Log(Vector3.Distance(transform.position, enemy.transform.position));
-        if (Vector3.Distance(transform.position, enemy.transform.position) < 15f)
-        {
-            Debug.Log("УРА");
-            ButtonClick?.Invoke();
-        }
-    }    
+    protected override void OnClickSkillButton()
+    {
+        TongueAnimationController.FireAttack();//дубляж ли с классом?
+        //может быть переименовать а то не с галагола начинается,,, attack with fire например
+    }
 }
