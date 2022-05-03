@@ -1,35 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
-public class EnemyAnimationController : MonoBehaviour
+public class EnemyAnimationController : AnimationController
 {
-    private Animator _animator;
-
-    private void Start()
+    public override void Move()
     {
-        _animator = GetComponent<Animator>();
+        Animator.SetBool("IsMove", true);//À»“≈–¿À€
+        Animator.SetBool("IsCheckPositionHipHop", false);//À»“≈–¿À€
+        Animator.SetBool("IsCheckPosition", false);//À»“≈–¿À€
     }
 
-    public void CheckPosition()
+    public override void Idle()
     {
-        _animator.SetBool("IsMove", false);
-        _animator.SetBool("IsCheckPositionHipHop", false);
-        _animator.SetBool("IsCheckPosition", true);
+        Animator.SetBool("IsMove", false);//À»“≈–¿À€
+        Animator.SetBool("IsCheckPositionHipHop", false);//À»“≈–¿À€
+        Animator.SetBool("IsCheckPosition", true);//À»“≈–¿À€
     }
 
-    public void Move()
+    public void Attack()/////////////////////////////////////////
     {
-        _animator.SetBool("IsMove", true);
-        _animator.SetBool("IsCheckPositionHipHop", false);
-        _animator.SetBool("IsCheckPosition", false);
-    }
-
-    public void CheckPositionHipHop()
-    {
-        _animator.SetBool("IsMove", false);
-        _animator.SetBool("IsCheckPosition", false);
-        _animator.SetBool("IsCheckPositionHipHop", true);
+        throw new System.NotImplementedException();
     }
 }

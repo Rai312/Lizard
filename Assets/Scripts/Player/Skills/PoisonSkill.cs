@@ -5,10 +5,9 @@ using UnityEngine.Events;
 
 public class PoisonSkill : AttackSkill
 {
-    public event UnityAction ButtonClick;
-
-    protected override void OnSkillButton()
+    protected override void OnClickSkillButton()
     {
-        ButtonClick?.Invoke();
+        TongueAnimationController.PoisonAttack();//дубляж ли с классом?
+        
     }
 }
