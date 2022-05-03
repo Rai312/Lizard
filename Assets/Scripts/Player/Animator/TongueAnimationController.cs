@@ -1,0 +1,34 @@
+using UnityEngine;
+
+public class TongueAnimationController : AnimationController//‡Á·ËÚ¸ Ì‡ ÌÂÒÍÓÎ¸ÍÓ ÍÎ‡ÒÒÓ‚
+{
+    public void IceAttack()
+    {
+        Animator.SetTrigger("IceAttack");//À»“≈–¿À€
+    }
+
+    public void FireAttack()
+    {
+        Animator.SetTrigger("FireAttack");//À»“≈–¿À€
+    }
+
+
+    public void PoisonAttack()
+    {
+        Animator.SetTrigger("PoisonAttack");//À»“≈–¿À€
+    }
+
+    public override void Move()
+    {
+        Animator.SetBool("IsMoving", true);//À»“≈–¿À€
+        Animator.SetBool("IsAttacking", false);//À»“≈–¿À€
+        Animator.SetBool("Idle", false);//À»“≈–¿À€
+    }
+
+    public override void Idle()
+    {
+        Animator.SetBool("IsMoving", false);//À»“≈–¿À€
+        Animator.SetBool("IsAttacking", false);//À»“≈–¿À€
+        Animator.SetBool("Idle", true);//À»“≈–¿À€
+    }
+}
