@@ -7,6 +7,7 @@ public abstract class Enemy : MonoBehaviour
 
     public event UnityAction Died;
     public int Health => _health;
+    public bool IsDead { get; private set; } = false;
 
     public void TakeDamage(int damage)
     {
@@ -16,7 +17,10 @@ public abstract class Enemy : MonoBehaviour
             _health = 0;
 
         if (_health == 0)
+        {
             Died?.Invoke();
+            IsDead = true;
+        }
     }
 
     protected virtual int AffectDamage(int damage)
