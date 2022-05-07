@@ -22,7 +22,6 @@ public class DieTransition : Transition
 
     private void OnDied()
     {
-        Debug.Log("NeedTransit = true;");
         NeedTransit = true;
     }
 }

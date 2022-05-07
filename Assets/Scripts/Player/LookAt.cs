@@ -34,7 +34,7 @@ public class LookAt : MonoBehaviour
                 sourceObjects.Insert(0, target);
 
                 _multiAimConstraint.data.sourceObjects = sourceObjects;
-                Debug.Log("OnTriggerEnter");
+                //Debug.Log("OnTriggerEnter");
                 _rigBuilder.Build();
 
                 TargetFound?.Invoke();

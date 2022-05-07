@@ -53,9 +53,9 @@ public class PatrolState : State
             _enemyAnimationController.Idle();
         });
 
-        _sequence.AppendInterval(1f);
+        _sequence.AppendInterval(4f);
         //Debug.Log("_sequence.Append(transform.DORotate(new Vector3(0, 0, 0), 4f));");
-        _sequence.Append(transform.DORotate(new Vector3(0, 0, 0), 4f));
+        _sequence.Append(transform.DORotate(new Vector3(0, 0, 0), 3.5f));
         //_sequence.AppendInterval(1f);
 
         _sequence.AppendCallback(() =>
@@ -69,7 +69,7 @@ public class PatrolState : State
             _enemyAnimationController.Idle();//Rename
         });
 
-        _sequence.AppendInterval(1f);
+        _sequence.AppendInterval(5f);
         _sequence.Append(transform.DORotate(new Vector3(0, 180f, 0), 4f));
         _sequence.AppendInterval(1f);
 

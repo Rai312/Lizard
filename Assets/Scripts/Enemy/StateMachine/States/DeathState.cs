@@ -8,7 +8,7 @@ public class DeathState : State
     //может быть связать интерфейсом c Dotween чтобы остановить его
     private void OnEnable()
     {
-        MakePhysical();
+        //MakePhysical();
     }
 
     private void MakePhysical()

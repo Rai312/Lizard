@@ -1,11 +1,18 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public abstract class AttackSkill : MonoBehaviour
 {
     [SerializeField] private LookAt _lookAt;
+    [SerializeField] private int _damage;
     [SerializeField] protected Button SkillButton;
     [SerializeField] protected TongueAnimationController TongueAnimationController;
+
+    //protected bool IsClick;
+    public bool IsClicked { get; private set; }
+    public int Damage => _damage;
+    public event UnityAction SkillButtonClick;
 
     protected virtual void OnEnable()
     {
@@ -19,7 +26,21 @@ public abstract class AttackSkill : MonoBehaviour
         _lookAt.TargetLost -= OnTargetLost;
     }
 
-    protected abstract void OnClickSkillButton();
+    protected virtual void OnClickSkillButton()
+    {
+        SkillButtonClick?.Invoke();
+        //Debug.Log(_isClick);
+    }
+
+    public void ActiveSkill()
+    {
+        IsClicked = true;
+    }
+
+    public void DisactivateSkill()
+    {
+        IsClicked = false;
+    }
 
     private void OnTargetFound()
     {
