@@ -17,7 +17,14 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private ParticleSystem _particleSystem;
     [SerializeField] private ParticleSystem _particleSystem2;
     [SerializeField] private ParticleSystem _particleSystem3;
+    [SerializeField] private ParticleSystem _particleSystem4;
     [SerializeField] private float _speed;
+    [SerializeField] private CubeExplosion _cubeExplosion;
+    [SerializeField] private GameObject[] _cubes;
+    [SerializeField] private ParticleSystem _particleSystem5;
+    [SerializeField] private ParticleSystem _particleSystem6;
+    [SerializeField] private ParticleSystem _particleSystem7;
+    [SerializeField] private ParticleSystem _particleSystem8;
 
     private void Awake()
     {
@@ -55,6 +62,7 @@ public abstract class Enemy : MonoBehaviour
         _particleSystem.Play();
         _particleSystem2.Play();
         _particleSystem3.Play();
+        _particleSystem4.Play();
         //MakePhysical();
         Throw();
     }
@@ -72,22 +80,28 @@ public abstract class Enemy : MonoBehaviour
     public void MakePhysical()
     {
         //_animator.enabled = false;
-
+        _particleSystem5.gameObject.SetActive(false);
+        _particleSystem6.gameObject.SetActive(false);
+        _particleSystem7.gameObject.SetActive(false);
+        _particleSystem8.gameObject.SetActive(false);
         for (int i = 0; i < _rigidbodies.Length; i++)
         {
             _rigidbodies[i].isKinematic = false;
         }
+        _cubeExplosion.CreateCube(_cubes);
+        _iceCube.gameObject.SetActive(false);
     }
 
     private void Throw()
     {
         Sequence sequence = DOTween.Sequence();
         sequence.AppendInterval(2.6f);
-        Debug.Log("Сработал");
+        
         Vector3 targetPosition = new Vector3(transform.position.x, transform.position.y + 40f, transform.position.z);
         //_rigidbodies[1].MovePosition(targetPosition * Time.deltaTime * _speed);
         sequence.AppendCallback(() =>
         {
+            //_cubeExplosion.Instantiate(new Vector3(_iceCube.transform.position.x, _iceCube.transform.position.y, _iceCube.transform.position.z));
             MakePhysical();
             for (int i = 0; i < _rigidbodies.Length; i++)
             {
@@ -96,6 +110,7 @@ public abstract class Enemy : MonoBehaviour
                 sequence.Append(_rigidbodies[i].transform.DOMoveY(targetPosition.y, 1.5f));
             }
         });
+        //sequence.Append();
         //for (int i = 0; i < _rigidbodies.Length; i++)
         //{
         //    //_rigidbodies[i].MovePosition(new Vector3(transform.position.x, transform.position.y + 50f, transform.position.z));

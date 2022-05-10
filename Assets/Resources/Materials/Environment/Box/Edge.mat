@@ -74,11 +74,11 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FlatRimEdgeSmoothness: 0.5
+    - _FlatRimEdgeSmoothness: 0
     - _FlatRimLightAlign: 0
-    - _FlatRimSize: 0.5
-    - _FlatSpecularEdgeSmoothness: 0
-    - _FlatSpecularSize: 0.1
+    - _FlatRimSize: 0
+    - _FlatSpecularEdgeSmoothness: 0.349
+    - _FlatSpecularSize: 0.618
     - _Flatness: 1
     - _FlatnessExtra: 1
     - _GlossMapScale: 1
@@ -99,10 +99,10 @@ Material:
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _RimEnabled: 0
-    - _SelfShadingSize: 0.415
-    - _SelfShadingSizeExtra: 0.594
-    - _ShadowEdgeSize: 0.226
-    - _ShadowEdgeSizeExtra: 0.233
+    - _SelfShadingSize: 0.573
+    - _SelfShadingSizeExtra: 1
+    - _ShadowEdgeSize: 0.259
+    - _ShadowEdgeSizeExtra: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularEnabled: 0
     - _SpecularHighlights: 1
@@ -113,19 +113,19 @@ Material:
     - _UVSec: 0
     - _UnityShadowMode: 0
     - _UnityShadowPower: 0
-    - _UnityShadowSharpness: 1.12
+    - _UnityShadowSharpness: 1
     - _VertexColorsEnabled: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.9150943, g: 0.7772783, b: 0.21150766, a: 1}
-    - _ColorDim: {r: 0.735849, g: 0.6017969, b: 0.2672659, a: 1}
+    - _Color: {r: 0.94509804, g: 0.7790202, b: 0.18431371, a: 1}
+    - _ColorDim: {r: 0.7264151, g: 0.55591804, b: 0.22272162, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
-    - _ColorDimExtra: {r: 1, g: 0.9438064, b: 0.3537736, a: 1}
+    - _ColorDimExtra: {r: 1, g: 0.7755215, b: 0.08962262, a: 1}
     - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorGradient: {r: 0.8962264, g: 0.81770456, b: 0.2325116, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FlatRimColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
-    - _FlatSpecularColor: {r: 1, g: 0.926083, b: 0.2216981, a: 1}
+    - _FlatRimColor: {r: 2, g: 1.6627451, b: 0.24313726, a: 1}
+    - _FlatSpecularColor: {r: 0.4862745, g: 0.35688907, b: 0, a: 1}
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
-    - _UnityShadowColor: {r: 0.94509804, g: 0.2627412, b: 0.18431371, a: 1}
+    - _UnityShadowColor: {r: 0.94509804, g: 0.84012276, b: 0.18431371, a: 1}
   m_BuildTextureStacks: []

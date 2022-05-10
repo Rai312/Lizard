@@ -79,5 +79,6 @@ public class PatrolState : State
         });
 
         _sequence.SetLoops(-1, LoopType.Restart);
+
     }
 }
