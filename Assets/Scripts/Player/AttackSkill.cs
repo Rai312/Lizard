@@ -9,7 +9,6 @@ public abstract class AttackSkill : MonoBehaviour
     [SerializeField] protected Button SkillButton;
     [SerializeField] protected TongueAnimationController TongueAnimationController;
 
-    //protected bool IsClick;
     public bool IsClicked { get; private set; }
     public int Damage => _damage;
     public event UnityAction SkillButtonClick;
@@ -29,7 +28,6 @@ public abstract class AttackSkill : MonoBehaviour
     protected virtual void OnClickSkillButton()
     {
         SkillButtonClick?.Invoke();
-        //Debug.Log(_isClick);
     }
 
     public void ActiveSkill()

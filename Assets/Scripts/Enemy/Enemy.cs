@@ -98,25 +98,14 @@ public abstract class Enemy : MonoBehaviour
         sequence.AppendInterval(2.6f);
         
         Vector3 targetPosition = new Vector3(transform.position.x, transform.position.y + 40f, transform.position.z);
-        //_rigidbodies[1].MovePosition(targetPosition * Time.deltaTime * _speed);
+
         sequence.AppendCallback(() =>
         {
-            //_cubeExplosion.Instantiate(new Vector3(_iceCube.transform.position.x, _iceCube.transform.position.y, _iceCube.transform.position.z));
             MakePhysical();
             for (int i = 0; i < _rigidbodies.Length; i++)
             {
-                //_rigidbodies[i].MovePosition(new Vector3(transform.position.x, transform.position.y + 50f, transform.position.z));
-
                 sequence.Append(_rigidbodies[i].transform.DOMoveY(targetPosition.y, 1.5f));
             }
         });
-        //sequence.Append();
-        //for (int i = 0; i < _rigidbodies.Length; i++)
-        //{
-        //    //_rigidbodies[i].MovePosition(new Vector3(transform.position.x, transform.position.y + 50f, transform.position.z));
-            
-        //    sequence.Append(_rigidbodies[i].transform.DOMoveY(targetPosition.y, 1.5f));
-        //}
-        //transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * _speed);
     }
 }

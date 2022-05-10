@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -7,9 +5,9 @@ public abstract class AnimationController : MonoBehaviour
 {
     protected Animator Animator;
 
-    protected readonly string IsMoving = "IsMoving";
-    protected readonly string IsIdle = "IsIdle";
-    protected readonly string IsAttacking = "IsAttacking";
+    protected const string IsMoving = "IsMoving";
+    protected const string IsIdle = "IsIdle";
+    protected const string IsAttacking = "IsAttacking";
 
     private void Start()
     {
@@ -18,5 +16,4 @@ public abstract class AnimationController : MonoBehaviour
 
     public abstract void Move();
     public abstract void Idle();
-    //public abstract void Attack();
 }
