@@ -2,29 +2,34 @@ using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Paintable))]
+[RequireComponent(typeof(IceCubeExplosion))]//хороше бы жизнь отделить
+[RequireComponent(typeof(TransformableOfEnemy))]
+[RequireComponent(typeof(EnemyParticleController))]
 public abstract class Enemy : MonoBehaviour
 {
+    //[SerializeField] private EnemyParticleController _particleController;
     [SerializeField] private int _health;
-    //[SerializeField] private TransformableOfEnemy _transformableOfEnemy;
-    [SerializeField] private Material _bodyMaterial;
-    [SerializeField] private Color _iceTargetColor;
-    [SerializeField] private Color _fireTargetColor;
-    [SerializeField] private Color _poisonTargetColor;
-    [SerializeField] private Color _startColor;//сделать потом ресет
-    [SerializeField] private GameObject _iceCube;
-    [SerializeField] private Animator _animator;
-    [SerializeField] private Rigidbody[] _rigidbodies;
-    [SerializeField] private ParticleSystem _particleSystem;
-    [SerializeField] private ParticleSystem _particleSystem2;
-    [SerializeField] private ParticleSystem _particleSystem3;
-    [SerializeField] private float _speed;
+    //[SerializeField] private GameObject _startIceCube;
+    //[SerializeField] private GameObject[] _cubes;
+
+    private Paintable _paintable;
+    private Animator _animator;
+    private IceCubeExplosion _cubeExplosion;
+    private TransformableOfEnemy _transformableOfEnemy;
+    private EnemyParticleController _particleController;
 
     private void Awake()
     {
-        _bodyMaterial.color = _startColor;
+        _paintable = GetComponent<Paintable>();
+        _animator = GetComponent<Animator>();
+        _cubeExplosion = GetComponent<IceCubeExplosion>();
+        _transformableOfEnemy = GetComponent<TransformableOfEnemy>();
+        _particleController = GetComponent<EnemyParticleController>();
     }
 
-    public event UnityAction Died;
+    public event UnityAction Died;//операции с падением врага проход€т в DeathState
     public int Health => _health;
     public bool IsDead { get; private set; } = false;
 
@@ -38,7 +43,7 @@ public abstract class Enemy : MonoBehaviour
         if (_health == 0)
         {
             Died?.Invoke();
-            IsDead = true;
+            IsDead = true;//ћќ∆≈“ Ѕџ“№ —ƒ≈Ћј“№ ENEMY SKILL CONTROLLER
         }
     }
 
@@ -49,59 +54,71 @@ public abstract class Enemy : MonoBehaviour
 
     public void ApplyIceEffect()//дл€ покраски может быть отдельный слой paintable сделать
     {
-        _iceCube.gameObject.SetActive(true);
-        _bodyMaterial.color = _iceTargetColor;
+        //_iceCube.gameObject.SetActive(true);
+        //_animator.enabled = false;
+        //_particleController.EnableIceExplosion();
+        //Throw();
+    }
+
+    public void ApplyIceAttackEffect()
+    {
+        //_startIceCube.gameObject.SetActive(true);
         _animator.enabled = false;
-        _particleSystem.Play();
-        _particleSystem2.Play();
-        _particleSystem3.Play();
-        //MakePhysical();
-        Throw();
+
+        _particleController.EnableIceExplosion();
+        _particleController.DisableFlashlight();
+
+        _transformableOfEnemy.TossUp();
+        _cubeExplosion.CreateExplosion();
+        //Throw();
     }
 
     public void ApplyFireEffect()
     {
-        _bodyMaterial.color = _fireTargetColor;
+    }
+
+    public void ApplyFireAttackEffect()
+    {
+        _animator.enabled = false;
+        _particleController.DisableFlashlight();//может быть скилы сделать отдельным классом типо презентера
     }
 
     public void ApplyPoisoningEffect()
     {
-        _bodyMaterial.color = _poisonTargetColor;
+        _paintable.PaintMaterial();
     }
 
-    public void MakePhysical()
+    public void ApplyPoisoningAttackEffect()
     {
-        //_animator.enabled = false;
-
-        for (int i = 0; i < _rigidbodies.Length; i++)
-        {
-            _rigidbodies[i].isKinematic = false;
-        }
+        _paintable.PaintMaterial();
+        _particleController.DisableFlashlight();
     }
+
+    //public void MakePhysical()//именнование посмотреть везде
+    //{
+    //    for (int i = 0; i < _rigidbodies.Length; i++)
+    //    {
+    //        _rigidbodies[i].isKinematic = false;
+    //    }
+    //}
 
     private void Throw()
     {
-        Sequence sequence = DOTween.Sequence();
-        sequence.AppendInterval(2.6f);
-        Debug.Log("—работал");
-        Vector3 targetPosition = new Vector3(transform.position.x, transform.position.y + 40f, transform.position.z);
-        //_rigidbodies[1].MovePosition(targetPosition * Time.deltaTime * _speed);
-        sequence.AppendCallback(() =>
-        {
-            MakePhysical();
-            for (int i = 0; i < _rigidbodies.Length; i++)
-            {
-                //_rigidbodies[i].MovePosition(new Vector3(transform.position.x, transform.position.y + 50f, transform.position.z));
-
-                sequence.Append(_rigidbodies[i].transform.DOMoveY(targetPosition.y, 1.5f));
-            }
-        });
-        //for (int i = 0; i < _rigidbodies.Length; i++)
+        //Sequence sequence = DOTween.Sequence();
+        //sequence.AppendInterval(2.6f);//MAGIC INT
+        ////MAGIC INT
+        //Vector3 targetPosition = new Vector3(transform.position.x, transform.position.y + 40f, transform.position.z);
+        ////MAGIC INT
+        //sequence.AppendCallback(() =>
         //{
-        //    //_rigidbodies[i].MovePosition(new Vector3(transform.position.x, transform.position.y + 50f, transform.position.z));
-            
-        //    sequence.Append(_rigidbodies[i].transform.DOMoveY(targetPosition.y, 1.5f));
-        //}
-        //transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * _speed);
+        //    MakePhysical();
+        //    _cubeExplosion.CreateIceCubes(_cubes);
+        //    _startIceCube.gameObject.SetActive(false);
+
+        //    for (int i = 0; i < _rigidbodies.Length; i++)
+        //    {
+        //        sequence.Append(_rigidbodies[i].transform.DOMoveY(targetPosition.y, 1.5f));//MAGIC INT
+        //    }
+        //});
     }
 }

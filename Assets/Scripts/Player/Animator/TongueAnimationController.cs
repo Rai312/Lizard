@@ -1,34 +1,38 @@
 using UnityEngine;
 
-public class TongueAnimationController : AnimationController//‡Á·ËÚ¸ Ì‡ ÌÂÒÍÓÎ¸ÍÓ ÍÎ‡ÒÒÓ‚
+public class TongueAnimationController : AnimationController
 {
+    private const string _iceAttack = "IceAttack";
+    private const string _fireAttack = "IceAttack";
+    private const string _poisonAttack = "IceAttack";
+
     public void IceAttack()
     {
-        Animator.SetTrigger("IceAttack");//À»“≈–¿À€
+        Animator.SetTrigger(_iceAttack);
     }
 
     public void FireAttack()
     {
-        Animator.SetTrigger("FireAttack");//À»“≈–¿À€
+        Animator.SetTrigger(_fireAttack);
     }
 
 
     public void PoisonAttack()
     {
-        Animator.SetTrigger("PoisonAttack");//À»“≈–¿À€
+        Animator.SetTrigger(_poisonAttack);
     }
 
     public override void Move()
     {
-        Animator.SetBool("IsMoving", true);//À»“≈–¿À€
-        Animator.SetBool("IsAttacking", false);//À»“≈–¿À€
-        Animator.SetBool("Idle", false);//À»“≈–¿À€
+        Animator.SetBool(IsMoving, true);
+        Animator.SetBool(IsAttacking, false);
+        Animator.SetBool(IsIdle, false);
     }
 
     public override void Idle()
     {
-        Animator.SetBool("IsMoving", false);//À»“≈–¿À€
-        Animator.SetBool("IsAttacking", false);//À»“≈–¿À€
-        Animator.SetBool("Idle", true);//À»“≈–¿À€
+        Animator.SetBool(IsMoving, false);
+        Animator.SetBool(IsAttacking, false);
+        Animator.SetBool(IsIdle, true);
     }
 }

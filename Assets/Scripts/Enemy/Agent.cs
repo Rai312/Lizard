@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Agent : Enemy
@@ -6,6 +7,7 @@ public class Agent : Enemy
 
     protected override int AffectDamage(int damage)
     {
-        return damage / _agility;
+        //Debug.Log(Mathf.RoundToInt(damage / _agility));
+        return Mathf.RoundToInt(damage / _agility);
     }
 }

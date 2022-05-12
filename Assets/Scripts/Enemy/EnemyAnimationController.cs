@@ -2,22 +2,17 @@ using UnityEngine;
 
 public class EnemyAnimationController : AnimationController
 {
+    private const string IsCheckPosition = "IsCheckPosition";
+
     public override void Move()
     {
-        Animator.SetBool("IsMove", true);//À»“≈–¿À€
-        Animator.SetBool("IsCheckPositionHipHop", false);//À»“≈–¿À€
-        Animator.SetBool("IsCheckPosition", false);//À»“≈–¿À€
+        Animator.SetBool(IsMoving, true);
+        Animator.SetBool(IsCheckPosition, false);
     }
 
     public override void Idle()
     {
-        Animator.SetBool("IsMove", false);//À»“≈–¿À€
-        Animator.SetBool("IsCheckPositionHipHop", false);//À»“≈–¿À€
-        Animator.SetBool("IsCheckPosition", true);//À»“≈–¿À€
-    }
-
-    public void Attack()/////////////////////////////////////////
-    {
-        throw new System.NotImplementedException();
+        Animator.SetBool(IsMoving, false);
+        Animator.SetBool(IsCheckPosition, true);
     }
 }

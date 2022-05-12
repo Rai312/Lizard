@@ -26,6 +26,33 @@ public class AttackHandler : MonoBehaviour
         _poisonSkill.SkillButtonClick -= OnPoisonSkillButtonClick;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<Enemy>(out Enemy enemy))
+        {
+            Attacked?.Invoke();
+
+            if (_iceSkill.IsClicked)
+            {
+                enemy.TakeDamage(_iceSkill.Damage);
+                //ICE - тут делается и со стороны игрока и со стороны врага действие
+                //enemy.ApplyIceEffect();
+                enemy.ApplyIceAttackEffect();
+                //ApplyIceAttackEffect();
+            }
+            else if (_fireSkill.IsClicked)
+            {
+                enemy.ApplyFireAttackEffect();
+                //_player.ApplyFireAttackEffect();
+                //FIRE - тут делается и со стороны игрока и со стороны врага действие
+            }
+            else if (_poisonSkill.IsClicked)
+            {
+                enemy.ApplyPoisoningEffect();
+                //POISON - тут делается и со стороны игрока и со стороны врага действие
+            }
+        }
+    }
     private void OnIceSkillButtonClick()
     {
         _iceSkill.ActiveSkill();
@@ -41,32 +68,24 @@ public class AttackHandler : MonoBehaviour
         _poisonSkill.ActiveSkill();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent<Enemy>(out Enemy enemy))
-        {
-            Attacked?.Invoke();
-            
-            Debug.Log($"IceSkill - {_iceSkill.IsClicked}");
-            Debug.Log($"FireSkill - {_fireSkill.IsClicked}");
-            Debug.Log($"PoisonSkill - {_poisonSkill.IsClicked}");
+    //private void ApplyIceAttackEffect()
+    //{
+    //    _iceCube.gameObject.SetActive(true);
+    //    _enemyAnimator.enabled = false;
+    //    _particleController.EnableIceExplosion();
+    //    _particleController.DisableFlashlight();
+    //}
 
-            if (_iceSkill.IsClicked)
-            {
-                enemy.TakeDamage(_iceSkill.Damage);
-                //ICE - тут делается и со стороны игрока и со стороны врага действие
-                enemy.ApplyIceEffect();
-            }
-            else if (_fireSkill.IsClicked)
-            {
-                enemy.ApplyFireEffect();
-                //FIRE - тут делается и со стороны игрока и со стороны врага действие
-            }
-            else if (_poisonSkill.IsClicked)
-            {
-                enemy.ApplyPoisoningEffect();
-                //POISON - тут делается и со стороны игрока и со стороны врага действие
-            }
-        }
-    }
+    //private void ApplyFireAttackEffect()
+    //{
+    //    _enemyAnimator.enabled = false;
+    //    _particleController.EnableFireExplosion();
+    //    _particleController.DisableFlashlight();
+    //}
+
+    //private void ApplyPoisoningAttackEffect()
+    //{
+    //    _paintable.PaintMaterial();
+    //    _particleController.DisableFlashlight();
+    //}
 }

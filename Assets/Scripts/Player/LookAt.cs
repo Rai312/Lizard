@@ -12,7 +12,6 @@ public class LookAt : MonoBehaviour
 
     public event UnityAction TargetFound;
     public event UnityAction TargetLost;
-    //public event UnityAction TargetDied;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,32 +25,18 @@ public class LookAt : MonoBehaviour
                 target.transform = enemy.transform;
                 target.weight = 1f;//MAGIC INT
 
-
-
                 var sourceObjects = _multiAimConstraint.data.sourceObjects;//дубляж var
                 sourceObjects.Clear();
 
                 sourceObjects.Insert(0, target);
 
                 _multiAimConstraint.data.sourceObjects = sourceObjects;
-                //Debug.Log("OnTriggerEnter");
                 _rigBuilder.Build();
 
                 TargetFound?.Invoke();
             }
         }
     }
-
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (other.TryGetComponent<Enemy>(out Enemy enemy))
-    //    {
-    //        if (_isEnemyDead)
-    //        {
-
-    //        }
-    //    }
-    //}
 
     private void OnTriggerExit(Collider other)
     {
