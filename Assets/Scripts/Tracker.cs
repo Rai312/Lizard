@@ -8,6 +8,7 @@ public class Tracker : MonoBehaviour
 
     private void Update()
     {
+        //MAGIC INT
         transform.position = new Vector3(_target.transform.position.x, _target.transform.position.y + 10f, _target.transform.position.z);
     }
 }

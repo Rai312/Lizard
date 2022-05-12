@@ -63,6 +63,7 @@ public class PatrolState : State
 
     private void OnDied()
     {
+        Debug.Log("OnDied");
         _sequence.Kill();
     }
 }

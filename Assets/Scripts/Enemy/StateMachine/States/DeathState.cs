@@ -5,7 +5,6 @@ public class DeathState : State
     [SerializeField] private Animator _animator;
     [SerializeField] private Rigidbody[] _rigidbodies;
 
-    //может быть связать интерфейсом c Dotween чтобы остановить его
     private void OnEnable()
     {
         //MakePhysical();
