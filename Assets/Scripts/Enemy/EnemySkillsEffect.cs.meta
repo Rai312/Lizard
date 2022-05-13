@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/Enemy/EnemySkillsEffect.cs.meta
 guid: 4bfd5e24d9ec8284aa4a4c9d3c2c5130
-========
-guid: b01c1eea44d1adb46a8ef2c6df6e7f73
->>>>>>>> 367310128c0f9effd2fa082267f4cff345e8be95:Assets/Scripts/IceCubeExplosion.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

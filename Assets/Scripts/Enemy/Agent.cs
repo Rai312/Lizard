@@ -7,7 +7,6 @@ public class Agent : Enemy
 
     protected override int AffectDamage(int damage)
     {
-        //Debug.Log(Mathf.RoundToInt(damage / _agility));
         return Mathf.RoundToInt(damage / _agility);
     }
 }

@@ -1,12 +1,6 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/Player/State.meta
-guid: 06255ea2abc2a044494483749fa3fe3c
-folderAsset: yes
-DefaultImporter:
-========
-guid: 45780ea2b17bd0647b14be98c0680015
+guid: d5af80b2926858e449b51657d71c6b1f
 NativeFormatImporter:
->>>>>>>> 367310128c0f9effd2fa082267f4cff345e8be95:Assets/Materials/Character/Enemies/TallStickmanPack1_Skin_Material 2.mat.meta
   externalObjects: {}
   mainObjectFileID: 2100000
   userData: 
