@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BuildPurpleWall
+  m_Name: New Material 1
   m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
   m_ShaderKeywords: _CELPRIMARYMODE_SINGLE _TEXTUREBLENDINGMODE_MULTIPLY _UNITYSHADOWMODE_NONE
   m_LightmapFlags: 4
@@ -99,13 +99,9 @@ Material:
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _RimEnabled: 0
-    - _SelfShadingSize: 0.106
+    - _SelfShadingSize: 0.5
     - _SelfShadingSizeExtra: 0.6
-<<<<<<<< HEAD:Assets/Materials/Scybox/BuildPurpleWall.mat
-    - _ShadowEdgeSize: 0.5
-========
     - _ShadowEdgeSize: 0.05
->>>>>>>> 367310128c0f9effd2fa082267f4cff345e8be95:Assets/Materials/Scybox/New Material.mat
     - _ShadowEdgeSizeExtra: 0.05
     - _SmoothnessTextureChannel: 0
     - _SpecularEnabled: 0
@@ -121,13 +117,8 @@ Material:
     - _VertexColorsEnabled: 0
     - _ZWrite: 1
     m_Colors:
-<<<<<<<< HEAD:Assets/Materials/Scybox/BuildPurpleWall.mat
-    - _Color: {r: 0.6339443, g: 0.43387324, b: 0.735849, a: 1}
-    - _ColorDim: {r: 0.56134737, g: 0.29307583, b: 0.6981132, a: 1}
-========
-    - _Color: {r: 0.79302365, g: 0.98039216, b: 0.63529414, a: 1}
-    - _ColorDim: {r: 0.5369036, g: 0.8509804, b: 0.46666667, a: 1}
->>>>>>>> 367310128c0f9effd2fa082267f4cff345e8be95:Assets/Materials/Scybox/New Material.mat
+    - _Color: {r: 1, g: 0.033018887, b: 0.033018887, a: 1}
+    - _ColorDim: {r: 0.9716981, g: 0.56376827, b: 0.9467228, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorDimExtra: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}

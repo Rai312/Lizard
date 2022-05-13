@@ -1,3 +1,3 @@
 using UnityEngine;
 
-public class AttackState : State { }
+public class AttackState : MonoBehaviour { }

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class AttackHandler : MonoBehaviour
 {
-    [SerializeField] private PlayerSkillsEffect _playerSkillsEffect;
+    [SerializeField] private Player _player;
     [SerializeField] private IceSkill _iceSkill;
     [SerializeField] private FireSkill _fireSkill;
     [SerializeField] private PoisonSkill _poisonSkill;
@@ -28,29 +28,28 @@ public class AttackHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Enemy>(out Enemy enemy)
-            && other.TryGetComponent<EnemySkillsEffect>(out EnemySkillsEffect enemySkillsEffect))
+        if (other.TryGetComponent<Enemy>(out Enemy enemy))
         {
             Attacked?.Invoke();
 
             if (_iceSkill.IsClicked)
             {
                 enemy.TakeDamage(_iceSkill.Damage);
-                enemySkillsEffect.ApplyIceAttackEffect();
-                _iceSkill.DisactivateSkill();
+                //ICE - тут делается и со стороны игрока и со стороны врага действие
+                //enemy.ApplyIceEffect();
+                enemy.ApplyIceAttackEffect();
+                //ApplyIceAttackEffect();
             }
             else if (_fireSkill.IsClicked)
             {
-                enemy.TakeDamage(_fireSkill.Damage);
-                enemySkillsEffect.ApplyFireAttackEffect();
-                _playerSkillsEffect.ApplyFireAttackEffect();
-                _fireSkill.DisactivateSkill();
+                enemy.ApplyFireAttackEffect();
+                //_player.ApplyFireAttackEffect();
+                //FIRE - тут делается и со стороны игрока и со стороны врага действие
             }
             else if (_poisonSkill.IsClicked)
             {
-                enemy.TakeDamage(_poisonSkill.Damage);
-                enemySkillsEffect.ApplyPoisoningAttackEffect();
-                _poisonSkill.DisactivateSkill();
+                enemy.ApplyPoisoningEffect();
+                //POISON - тут делается и со стороны игрока и со стороны врага действие
             }
         }
     }
@@ -68,4 +67,25 @@ public class AttackHandler : MonoBehaviour
     {
         _poisonSkill.ActiveSkill();
     }
+
+    //private void ApplyIceAttackEffect()
+    //{
+    //    _iceCube.gameObject.SetActive(true);
+    //    _enemyAnimator.enabled = false;
+    //    _particleController.EnableIceExplosion();
+    //    _particleController.DisableFlashlight();
+    //}
+
+    //private void ApplyFireAttackEffect()
+    //{
+    //    _enemyAnimator.enabled = false;
+    //    _particleController.EnableFireExplosion();
+    //    _particleController.DisableFlashlight();
+    //}
+
+    //private void ApplyPoisoningAttackEffect()
+    //{
+    //    _paintable.PaintMaterial();
+    //    _particleController.DisableFlashlight();
+    //}
 }
