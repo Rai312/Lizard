@@ -1,3 +1,3 @@
 using UnityEngine;
 
-public class DistanceTransition : MonoBehaviour { }
+public class DistanceTransition : Transition { }

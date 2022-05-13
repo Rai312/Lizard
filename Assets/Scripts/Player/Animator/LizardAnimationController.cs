@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LizardAnimationController : AnimationController
 {
-    public void Attack()/////////////////////////////////////
+    public void Attack()
     {
         throw new System.NotImplementedException();
     }
