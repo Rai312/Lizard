@@ -6,6 +6,7 @@ public class EnemyParticleController : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _flashlight;
     [SerializeField] private ParticleSystem _iceExplosion;
+    [SerializeField] private ParticleSystem _poisonExplosion;
 
     public void DisableFlashlight()
     {
@@ -15,5 +16,10 @@ public class EnemyParticleController : MonoBehaviour
     public void EnableIceExplosion()
     {
         _iceExplosion.Play();
+    }
+
+    public void EnablePoisonExplosion()
+    {
+        _poisonExplosion.Play();
     }
 }

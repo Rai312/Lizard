@@ -47,7 +47,11 @@ public class EnemySkillsEffect : MonoBehaviour
 
     public void ApplyPoisoningAttackEffect()
     {
-        _paintable.PaintMaterial();
+        _animator.enabled = false;
+        _particleController.EnablePoisonExplosion();
         _particleController.DisableFlashlight();
+
+        _transformableOfEnemy.Drop();
+        _paintable.PaintMaterial();
     }
 }

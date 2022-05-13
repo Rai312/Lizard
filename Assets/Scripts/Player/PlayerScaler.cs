@@ -5,8 +5,11 @@ using DG.Tweening;
 
 public class PlayerScaler : MonoBehaviour
 {
+    [SerializeField] private float _targetScale = 2.5f;
+    [SerializeField] private float _durationScaling = 0.5f;
+
     public void Scale()
     {
-        transform.DOScale(1f, 2f);
+        transform.DOScale(_targetScale, _durationScaling);
     }
 }

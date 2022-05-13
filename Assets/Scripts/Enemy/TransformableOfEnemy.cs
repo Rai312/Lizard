@@ -49,6 +49,11 @@ public class TransformableOfEnemy : MonoBehaviour
         );
     }
 
+    public void Drop()
+    {
+        MakePhysical();
+    }
+
     private void MakePhysical()
     {
         for (int i = 0; i < _rigidbodies.Length; i++)
