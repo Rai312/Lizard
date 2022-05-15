@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -11,11 +9,6 @@ public class IceCubeExplosion : MonoBehaviour
     [SerializeField] private GameObject _startIceCube;
     [SerializeField] private GameObject[] _iceCubes;
 
-    //private void Start()
-    //{
-    //    _startIceCube.gameObject.SetActive(false);
-    //}
-
     public void CreateExplosion()
     {
         Sequence sequence = DOTween.Sequence();
@@ -24,6 +17,7 @@ public class IceCubeExplosion : MonoBehaviour
         {
             EnableStartIceCube();
         });
+
         sequence.AppendInterval(_delayBeforeExplosion);
 
         sequence.AppendCallback(() =>

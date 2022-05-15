@@ -1,4 +1,4 @@
-public class IceSkill : AttackSkill
+public class IceSkill : Skill
 {
     protected override void OnClickSkillButton()
     {

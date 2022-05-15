@@ -1,15 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerScaler))]
-[RequireComponent(typeof(PlayerParticleController))]
-public class PlayerSkillsEffect : MonoBehaviour
+public class PlayerSkillsEffect : SkillsEffect
 {
     [SerializeField] private MeshChanger _meshChanger;
 
     private PlayerScaler _playerScaler;
-    private PlayerParticleController _particleController;//абстракция
+    private PlayerParticleController _particleController;
 
     private void Awake()
     {
@@ -17,7 +14,7 @@ public class PlayerSkillsEffect : MonoBehaviour
         _particleController = GetComponent<PlayerParticleController>();
     }
 
-    public void ApplyFireAttackEffect()//абстрация
+    public override void ApplyFireAttackEffect()
     {
         _meshChanger.ChangeMesh();
         _playerScaler.Scale();

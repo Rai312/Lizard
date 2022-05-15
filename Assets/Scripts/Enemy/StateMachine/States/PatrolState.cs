@@ -15,6 +15,7 @@ public class PatrolState : State
     private float _durationRotate = 3.5f;
     private float _waitingTimeBeforeRotate = 5.2f;
     private float _waitingTimeBeforeMove = 0.3f;
+    private int _cycleNumber = -1;
 
     private void Awake()
     {
@@ -40,7 +41,7 @@ public class PatrolState : State
         Patrol(-_pathLengthZ, Vector3.zero);
         Patrol(_pathLengthZ, _targetRotation);
 
-        _sequence.SetLoops(-1, LoopType.Restart);
+        _sequence.SetLoops(_cycleNumber, LoopType.Restart);
     }
 
     private void Patrol(float pathLenghtZ, Vector3 targetRotation)

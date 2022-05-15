@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerParticleController : MonoBehaviour
+public class PlayerParticleController : ParticleController
 {
     [SerializeField] private ParticleSystem _fireExplosion;
 

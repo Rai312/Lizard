@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyParticleController : MonoBehaviour
+public class EnemyParticleController : ParticleController
 {
     [SerializeField] private ParticleSystem _flashlight;
     [SerializeField] private ParticleSystem _iceExplosion;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -20,6 +18,7 @@ public class TransformableOfEnemy : MonoBehaviour
     {
         Sequence sequence = DOTween.Sequence();
         sequence.AppendInterval(_delayBeforeTossUp);
+
         _targetPosition = new Vector3(transform.position.x, transform.position.y + _heightTossUp, transform.position.z);
 
         sequence.AppendCallback(() =>

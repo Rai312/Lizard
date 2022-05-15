@@ -1,4 +1,4 @@
-public class FireSkill : AttackSkill
+public class FireSkill : Skill
 {
     protected override void OnClickSkillButton()
     {

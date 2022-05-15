@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Paintable))]
 [RequireComponent(typeof(IceCubeExplosion))]
 [RequireComponent(typeof(TransformableOfEnemy))]
-[RequireComponent(typeof(EnemyParticleController))]
-public class EnemySkillsEffect : MonoBehaviour
+public class EnemySkillsEffect : SkillsEffect
 {
     private Paintable _paintable;
     private Animator _animator;
@@ -21,7 +18,7 @@ public class EnemySkillsEffect : MonoBehaviour
         _animator = GetComponent<Animator>();
         _cubeExplosion = GetComponent<IceCubeExplosion>();
         _transformableOfEnemy = GetComponent<TransformableOfEnemy>();
-        _particleController = GetComponent<EnemyParticleController>();//абстракция
+        _particleController = GetComponent<EnemyParticleController>();
     }
 
     public void ApplyIceAttackEffect()
@@ -35,14 +32,12 @@ public class EnemySkillsEffect : MonoBehaviour
         _cubeExplosion.CreateExplosion();
     }
 
-    public void ApplyFireAttackEffect()
+    public override void ApplyFireAttackEffect()
     {
         _animator.enabled = false;
         _particleController.DisableFlashlight();
 
         _transformableOfEnemy.PullToPlayer();
-        Physics.IgnoreLayerCollision(6, 9, false);//MAGIC INT
-        Physics.IgnoreLayerCollision(7, 9, false);//MAGIC INT
     }
 
     public void ApplyPoisoningAttackEffect()
