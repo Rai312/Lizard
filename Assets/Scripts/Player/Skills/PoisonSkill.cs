@@ -1,4 +1,4 @@
-public class PoisonSkill : AttackSkill
+public class PoisonSkill : Skill
 {
     protected override void OnClickSkillButton()
     {

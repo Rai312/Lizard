@@ -3,24 +3,8 @@ using UnityEngine;
 public class TongueAnimationController : AnimationController
 {
     private const string _iceAttack = "IceAttack";
-    private const string _fireAttack = "IceAttack";
-    private const string _poisonAttack = "IceAttack";
-
-    public void IceAttack()
-    {
-        Animator.SetTrigger(_iceAttack);
-    }
-
-    public void FireAttack()
-    {
-        Animator.SetTrigger(_fireAttack);
-    }
-
-
-    public void PoisonAttack()
-    {
-        Animator.SetTrigger(_poisonAttack);
-    }
+    private const string _fireAttack = "FireAttack";
+    private const string _poisonAttack = "PoisonAttack";
 
     public override void Move()
     {
@@ -34,5 +18,20 @@ public class TongueAnimationController : AnimationController
         Animator.SetBool(IsMoving, false);
         Animator.SetBool(IsAttacking, false);
         Animator.SetBool(IsIdle, true);
+    }
+
+    public void IceAttack()
+    {
+        Animator.SetTrigger(_iceAttack);
+    }
+
+    public void FireAttack()
+    {
+        Animator.SetTrigger(_fireAttack);
+    }
+
+    public void PoisonAttack()
+    {
+        Animator.SetTrigger(_poisonAttack);
     }
 }

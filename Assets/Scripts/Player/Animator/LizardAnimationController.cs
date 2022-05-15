@@ -1,19 +1,24 @@
-using UnityEngine;
-
 public class LizardAnimationController : AnimationController
 {
     public void Attack()
     {
-        throw new System.NotImplementedException();
+        Animator.SetBool(IsMoving, false);
+        Animator.SetBool(IsIdle, false);
+        Animator.SetBool(IsAttacking, true);
     }
 
     public override void Idle()
     {
-        throw new System.NotImplementedException();
+        FDebug.Log("LizardAnimationController - Idle");
+        Animator.SetBool(IsMoving, false);
+        Animator.SetBool(IsIdle, true);
+        Animator.SetBool(IsAttacking, false);
     }
 
     public override void Move()
     {
-        throw new System.NotImplementedException();
+        Animator.SetBool(IsMoving, true);
+        Animator.SetBool(IsIdle, false);
+        Animator.SetBool(IsAttacking, false);
     }
 }

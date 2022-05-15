@@ -4,23 +4,44 @@ namespace FIMSpace.GroundFitter
 {
     public class FGroundFitter_Input : FGroundFitter_InputBase
     {
+        [SerializeField] private Joystick _joystick;
+
         protected virtual void Update()
         {
-
             if (Input.GetKeyDown(KeyCode.Space)) TriggerJump();
 
             Vector3 dir = Vector3.zero;
 
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            if (_joystick.Direction.y > 0 || _joystick.Direction.x < 0 || _joystick.Direction.x > 0 || _joystick.Direction.y < 0)
             {
-                if (Input.GetKey(KeyCode.LeftShift)) Sprint = true; else Sprint = false;
+                //if (Input.GetKey(KeyCode.LeftShift)) Sprint = true; else Sprint = false;
 
-                if (Input.GetKey(KeyCode.W)) dir.z += 1f;
-                if (Input.GetKey(KeyCode.A)) dir.x -= 1f;
-                if (Input.GetKey(KeyCode.D)) dir.x += 1f;
-                if (Input.GetKey(KeyCode.S)) dir.z -= 1f;
+                //if (Input.GetKey(KeyCode.W)) 
+                if (_joystick.Direction.y > 0)
+                {
+                    //dir.z += 1f;
+                    dir.z = _joystick.Direction.y;
+                }
+                //if (Input.GetKey(KeyCode.A)) 
+                if (_joystick.Direction.x < 0)
+                {
+                    //dir.x -= 1f;
+                    dir.x = _joystick.Direction.x;
+                }
+                //if (Input.GetKey(KeyCode.D)) 
+                if (_joystick.Direction.x > 0)
+                {
+                    //dir.x += 1f;
+                    dir.x = _joystick.Direction.x;
+                }
+                //if (Input.GetKey(KeyCode.S)) 
+                if (_joystick.Direction.y < 0)
+                {
+                    //dir.z -= 1f;
+                    dir.z = _joystick.Direction.y;
+                }
 
-                dir.Normalize();
+                //dir.Normalize();
 
                 RotationOffset = Quaternion.LookRotation(dir).eulerAngles.y;
 
@@ -32,9 +53,9 @@ namespace FIMSpace.GroundFitter
                 MoveVector = Vector3.zero;
             }
 
-            if (Input.GetKey(KeyCode.X)) MoveVector -= Vector3.forward;
-            if (Input.GetKey(KeyCode.Q)) MoveVector += Vector3.left;
-            if (Input.GetKey(KeyCode.E)) MoveVector += Vector3.right;
+            //if (Input.GetKey(KeyCode.X)) MoveVector -= Vector3.forward;
+            //if (Input.GetKey(KeyCode.Q)) MoveVector += Vector3.left;
+            //if (Input.GetKey(KeyCode.E)) MoveVector += Vector3.right;
 
             MoveVector.Normalize();
 
