@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class IdlingTransition : Transition
@@ -10,7 +8,6 @@ public class IdlingTransition : Transition
     {
         if (_joystick.Direction.x == 0 && _joystick.Direction.y == 0)
         {
-            Debug.Log("IdlingTransition");
             NeedTransit = true;
         }
     }

@@ -17,7 +17,7 @@ namespace FIMSpace.GroundFitter
         {
             base.Reset();
             RelativeLookUp = true;
-            RelativeLookUpBias = 0.25f;
+            RelativeLookUpBias = 3.25f;
         }
 
 

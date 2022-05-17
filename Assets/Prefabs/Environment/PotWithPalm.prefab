@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2867527274444341186}
   - component: {fileID: 1879790365948951048}
   - component: {fileID: 3287633705775705782}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1046025941246101598}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7202, z: 0}
+  m_LocalPosition: {x: 0, y: 1.2, z: 0}
   m_LocalScale: {x: 2.503125, y: 0.014703999, z: 2.3706}
   m_Children: []
   m_Father: {fileID: 1678595529042082941}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 3452488131343081021}
   - component: {fileID: 8439193509954836057}
   - component: {fileID: 824069194136014563}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Foglie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 1678595529042082941}
   - component: {fileID: 3752680477009347860}
   - component: {fileID: 7933865595949943088}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PotWithPalm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,8 +223,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.6805322, y: 6.133592, z: 2.9517035}
-  m_Center: {x: 0.08513149, y: 2.566796, z: 0.04743576}
+  m_Size: {x: 5.152773, y: 6.75117, z: 4.895185}
+  m_Center: {x: -0.25863045, y: 2.2580073, z: 0.108084366}
 --- !u!54 &7933865595949943088
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 5947593315731369084}
   - component: {fileID: 8387440061265095703}
   - component: {fileID: 1178430304483113573}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3963331755832896835}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.3973, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 2.2056, z: 3}
   m_Children: []
   m_Father: {fileID: 1678595529042082941}
@@ -345,7 +345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8172323637888446606}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: palm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8800664380773378612}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.84, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 2, z: 3}
   m_Children:
   - {fileID: 3452488131343081021}
@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 8461434783034712751}
   - component: {fileID: 3984757664066840879}
   - component: {fileID: 3643278919735887316}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: tronco
   m_TagString: Untagged
   m_Icon: {fileID: 0}

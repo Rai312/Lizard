@@ -10,7 +10,6 @@ public class MovingTransition : Transition
     {
         if (_joystick.Direction.x != 0 && _joystick.Direction.y != 0)
         {
-            Debug.Log("MovingTransition");
             NeedTransit = true;
         }
     }
