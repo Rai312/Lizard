@@ -8,6 +8,7 @@ public abstract class Skill : MonoBehaviour
     [SerializeField] private int _damage;
     [SerializeField] protected Button SkillButton;
     [SerializeField] protected TongueAnimationController TongueAnimationController;
+    [SerializeField] protected TongueMaterialChanger TongueMaterialChanger;
 
     public bool IsClicked { get; private set; }
     public int Damage => _damage;

@@ -4,5 +4,6 @@ public class IceSkill : Skill
     {
         base.OnClickSkillButton();
         TongueAnimationController.IceAttack();
+        TongueMaterialChanger.AssingIceMaterial();
     }
 }

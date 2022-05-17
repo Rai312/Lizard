@@ -4,5 +4,6 @@ public class PoisonSkill : Skill
     {
         base.OnClickSkillButton();
         TongueAnimationController.PoisonAttack();
+        TongueMaterialChanger.AssingPoisonMaterial();
     }
 }

@@ -10,7 +10,7 @@ Material:
   m_Name: PinkWallFirstFloor
   m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
   m_ShaderKeywords: DR_GRADIENT_ON _CELPRIMARYMODE_SINGLE _TEXTUREBLENDINGMODE_MULTIPLY
-    _UNITYSHADOWMODE_MULTIPLY
+    _UNITYSHADOWMODE_COLOR
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -112,7 +112,7 @@ Material:
     - _TextureBlendingMode: 0
     - _TextureImpact: 1
     - _UVSec: 0
-    - _UnityShadowMode: 1
+    - _UnityShadowMode: 2
     - _UnityShadowPower: 0.15
     - _UnityShadowSharpness: 1
     - _VertexColorsEnabled: 0
@@ -128,5 +128,5 @@ Material:
     - _FlatRimColor: {r: 0.7075472, g: 0.07676221, b: 0.30058923, a: 1}
     - _FlatSpecularColor: {r: 1, g: 0.4198113, b: 0.54875934, a: 1}
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
-    - _UnityShadowColor: {r: 0.99215686, g: 0.5294118, b: 0.6901961, a: 1}
+    - _UnityShadowColor: {r: 0.8396226, g: 0.3920879, b: 0.5475874, a: 1}
   m_BuildTextureStacks: []

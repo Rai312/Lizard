@@ -6,12 +6,12 @@ using DG.Tweening;
 public class PatrolState : State
 {
     [SerializeField] private float _pathLengthZ = 40f;
+    [SerializeField] private float _durationMove = 5f;
 
     private EnemyAnimationController _enemyAnimationController;
     private Enemy _enemy;
     private Vector3 _targetRotation = new Vector3(0, 180f, 0);
     private Sequence _sequence;
-    private float _durationMove = 5f;
     private float _durationRotate = 3.5f;
     private float _waitingTimeBeforeRotate = 5.2f;
     private float _waitingTimeBeforeMove = 0.3f;

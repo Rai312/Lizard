@@ -4,5 +4,6 @@ public class FireSkill : Skill
     {
         base.OnClickSkillButton();
         TongueAnimationController.FireAttack();
+        TongueMaterialChanger.AssingFireMaterial();
     }
 }
