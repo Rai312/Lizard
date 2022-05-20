@@ -1,13 +1,15 @@
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
+using UnityEngine.Animations;
+using DG.Tweening;
+using System.Collections;
 
 public class LookAt : MonoBehaviour
 {
-    [SerializeField] private MultiAimConstraint _multiAimConstraint;
-    [SerializeField] private RigBuilder _rigBuilder;
+    [SerializeField] private AimConstraint _aimConstraint;
 
     private float _targetWeight = 1f;
+    private Coroutine _coroutine;//Rename;
 
     public event UnityAction TargetFound;
     public event UnityAction TargetLost;
@@ -18,17 +20,16 @@ public class LookAt : MonoBehaviour
         {
             if (enemy.IsDead == false)
             {
+                if (_coroutine != null)
+                    StopCoroutine(_coroutine);
+
                 enemy.Died += OnDied;
 
-                WeightedTransform target;
-                target.transform = enemy.transform;
+                _aimConstraint.weight = 1;
+                ConstraintSource target = new ConstraintSource();
+                target.sourceTransform = enemy.transform;
                 target.weight = _targetWeight;
-
-                var sourceObjects = GetSourceObjects();
-                sourceObjects.Insert(0, target);
-
-                _multiAimConstraint.data.sourceObjects = sourceObjects;
-                _rigBuilder.Build();
+                _aimConstraint.AddSource(target);
 
                 TargetFound?.Invoke();
             }
@@ -39,27 +40,51 @@ public class LookAt : MonoBehaviour
     {
         if (other.TryGetComponent<Enemy>(out Enemy enemy))
         {
-            enemy.Died -= OnDied;
+            enemy.Died -= OnDied;//может sourceObject переименовать
 
-            _multiAimConstraint.data.sourceObjects = GetSourceObjects();
-            _rigBuilder.Build();
+            
 
             TargetLost?.Invoke();
+            _coroutine = StartCoroutine(SetStartRotation());
         }
     }
 
-    private WeightedTransformArray GetSourceObjects()
+    private void OnDied()//переписать
     {
-        var sourceObjects = _multiAimConstraint.data.sourceObjects;
-        sourceObjects.Clear();
-
-        return sourceObjects;
+        //_aimConstraint.weight = 0;
+        //_aimConstraint.RemoveSource(0);//MAGIC INT и возможно нужно убрать дубляж
+        //SetStartRotation();
+        _coroutine = StartCoroutine(SetStartRotation());
     }
 
-    private void OnDied()
+    //private void SetStartRotation()
+    //{
+
+    //    Debug.Log("SetStartRotation");
+    //    Quaternion targetRotation = new Quaternion(0, 0, 0, 1);
+
+    //    transform.DORotateQuaternion(targetRotation, 8f).WaitForKill();
+    //}
+
+    private IEnumerator SetStartRotation()//rename
     {
-        var sourceObjects = GetSourceObjects();
-        _multiAimConstraint.data.sourceObjects = sourceObjects;
-        _rigBuilder.Build();
+        float duration = 2f;
+        float elapsed = 0;
+
+        while (elapsed < duration)
+        {
+            Debug.Log(elapsed + "elapsed");
+            Debug.Log(elapsed / duration + "elapsed / duration");//ПОСЛЕ СМЕРТИ СДЕЛАТЬ ДОЛЬШЕ ЗАДЕРЖКУ 
+            elapsed += Time.deltaTime;
+            _aimConstraint.weight = Mathf.Lerp(_aimConstraint.weight, 0, elapsed / duration);
+
+            if (_aimConstraint.weight == 0)
+                _aimConstraint.RemoveSource(0);//MAGIC INT
+
+            yield return null;
+        }
+
+        //MAGIC INT
+        Debug.Log("_aimConstraint.RemoveSource(0)");
     }
 }

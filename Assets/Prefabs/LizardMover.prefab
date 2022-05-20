@@ -1,0 +1,252 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2007326779348524634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2662219593845364617}
+  - component: {fileID: 6129209810661721964}
+  - component: {fileID: 8810759171750562455}
+  - component: {fileID: 2777315670982712825}
+  - component: {fileID: 348490913281361180}
+  - component: {fileID: 1799064746919459949}
+  m_Layer: 0
+  m_Name: LizardMover
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2662219593845364617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007326779348524634}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.858406, y: 4.300003, z: -60.117035}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6129209810661721964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007326779348524634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee822a5a4890d54ca45c0b3957b8606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FittingSpeed: 6
+  TotalSmoother: 0
+  TransformToRotate: {fileID: 2662219593845364617}
+  GlueToGround: 0
+  MildForwardValue: 0
+  MaxForwardRotation: 90
+  MildHorizontalValue: 0
+  MaxHorizontalRotation: 90
+  RaycastHeightOffset: 1.49
+  RaycastCheckRange: 5.79
+  LookAheadRaycast: 0
+  AheadBlend: 0.5
+  UpOffset: 0
+  GroundLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  RelativeLookUp: 1
+  RelativeLookUpBias: 0.25
+  ZoneCast: 1
+  ZoneCastDimensions: {x: 0.66, y: 0.33}
+  ZoneCastOffset: {x: 0, y: 2.48, z: 4.73}
+  ZoneCastBias: 4.23
+  ZoneCastPrecision: 0.817
+  drawDebug: 1
+  HandleRootMotion: 0
+  parentTransform: {fileID: 2662219593845364617}
+  optionalCharContr: {fileID: 0}
+  rootMotionRotation: 1
+  UpdateClock: 0
+--- !u!114 &8810759171750562455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007326779348524634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ed2acf4e3239a4cb0d5930b05e0b6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseSpeed: 30
+  RotateToTargetSpeed: 6
+  SprintingSpeed: 10
+  AccelerationSpeed: 10
+  DecelerationSpeed: 10
+  JumpPower: 7
+  gravity: 15
+  MultiplySprintAnimation: 0
+  RotateBackInAir: 0
+  NotFallingThrough: 0
+  UsePhysics: 0
+  UseRootMotionTranslation: 0
+  UseRootMotionRotation: 0
+  SetIsGroundedParam: 
+  SetIsMovingParam: 
+  UseSlidingMat: 1
+--- !u!114 &2777315670982712825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007326779348524634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb4cdc8984a3f2f458a6c11edfafd0dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _joystick: {fileID: 0}
+--- !u!95 &348490913281361180
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007326779348524634}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1799064746919459949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007326779348524634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9389b707478daf9439a5f83720735846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpineTransforms:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ForwardReference: {fileID: 2662219593845364617}
+  BlendToOriginal: 0
+  LastBoneLeading: 0
+  BackwardMovement: 0
+  ReverseOrder: 0
+  ChainMethod: 0
+  ConnectWithAnimator: 0
+  OptimizeWithMesh: 0
+  VisibilityRenderer: {fileID: 0}
+  AnimateLeadingBone: 0
+  LeadingAnimateAfterMotion: 0
+  PhysicalUpdate: 0
+  SafeDeltaTime: 1
+  AnchorToThis: 1
+  AutoAnchor: 0
+  AnchorRoot: {fileID: 0}
+  CustomAnchorRotationOffset: {x: 0, y: 0, z: 0}
+  LeadBoneRotationOffset: {x: 0, y: 0, z: 0}
+  QueueToLastUpdate: 0
+  PositionsNotAnimated: 1
+  SelectivePosNotAnimated: 
+  RotationsNotAnimated: 0
+  SelectiveRotNotAnimated: 
+  SegmentCollision: 01010101010101010101010101010101
+  lookDirectionsAdditiveCorrection: []
+  ManualAffectChain: 0
+  ManualRotationOffsets: []
+  ManualPositionOffsets: []
+  RoundCorrection: 0
+  UnifyCorrection: 0
+  StartAfterTPose: 1
+  PosSmoother: 0
+  RotSmoother: 0
+  MaxStretching: 1
+  Slithery: 1
+  AngleLimit: 90
+  LimitSmoother: 0
+  StraightenSpeed: 0
+  TurboStraighten: 0
+  GoBackSpeed: 0
+  Springiness: 0
+  MainPivotOffset: {x: 0, y: 0, z: 0}
+  mainPivotOffsetTransform: {fileID: 0}
+  SegmentsPivotOffset: {x: 0, y: 0, z: 0}
+  DistancesMultiplier: 1
+  getReminders: 0
+  wasIncorrectRemind: 0
+  incorrectionWarning: 0
+  DrawDebug: 0
+  DebugAlpha: 1
+  AdditionalDebugAlpha: 1
+  drawGizmos: 1
+  UseCollisions: 0
+  IncludedColliders: []
+  CollidersOffsets: []
+  UseTruePosition: 0
+  OffsetAllColliders: {x: 0, y: 0, z: 0}
+  CollidersScale:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  CollidersScaleMul: 6.5
+  DifferenceScaleFactor: 1
+  DetailedCollision: 0
+  GravityPower: {x: 0, y: 0, z: 0}

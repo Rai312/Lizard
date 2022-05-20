@@ -3,7 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerScaler))]
 public class PlayerSkillsEffect : SkillsEffect
 {
-    [SerializeField] private MeshChanger _meshChanger;
+    [SerializeField] private MeshChanger _meshHeadChanger;
+    [SerializeField] private MeshChanger _meshLegsChanger;
+    [SerializeField] private MeshChanger _meshSpineChanger;
 
     private PlayerScaler _playerScaler;
     private PlayerParticleController _particleController;
@@ -16,7 +18,9 @@ public class PlayerSkillsEffect : SkillsEffect
 
     public override void ApplyFireAttackEffect()
     {
-        _meshChanger.ChangeMesh();
+        _meshHeadChanger.ChangeMesh();
+        _meshLegsChanger.ChangeMesh();
+        _meshSpineChanger.ChangeMesh();
         _playerScaler.Scale();
         _particleController.EnableFireExplosion();
     }
