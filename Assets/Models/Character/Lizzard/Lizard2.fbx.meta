@@ -6,17 +6,7 @@ ModelImporter:
   - first:
       74: -8009762979154779912
     second: Armature|Armature|Armature|Walk
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Lizard
-    second: {fileID: 2100000, guid: fa4456d0e5c02714b8f4442efba564c5, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Lizard
-    second: {fileID: 2800000, guid: b03fe4f4027fa8643be2ce3e37b9d45c, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
