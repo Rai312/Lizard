@@ -12,17 +12,15 @@ public class IceCubeExplosion : MonoBehaviour
 
     private float _elapsedTime = 0;
     private Coroutine _fadeDragInJob;
-    //private Coroutine _fadeDecreaseDragInJob;
+
     private float _durationIncreaseFading = 0.4f;
     private float _delayBeforeIncreaseFading = 0.4f;
+
     private float _durationDecreaseFading = 0.8f;
     private float _delayBeforeDecreaseFading = 0.8f;
+
     private float _targetMinDragValue = 0f;
     private float _targetMaxDragValue = 4.5f;
-    //private float _durationIncreaseFading = 1.0f;
-    //private float _delayBeforeIncreaseFading = 1.0f;
-    //private float _durationDecreaseFading = 2f;
-    //private float _delayBeforeDecreaseFading = 2f;
 
     public void CreateExplosion()
     {

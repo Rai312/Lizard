@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Animations;
-using DG.Tweening;
 using System.Collections;
 
 public class LookAt : MonoBehaviour
@@ -9,7 +8,11 @@ public class LookAt : MonoBehaviour
     [SerializeField] private AimConstraint _aimConstraint;
 
     private float _targetWeight = 1f;
-    private Coroutine _coroutine;//Rename;
+    private int indexOfRemoveTargetObject = 0;
+    private Coroutine _rotateToStartPositionInJob;
+    private float _minValueWeight = 0;
+    private float _durationSmoothingRotation = 3f;
+    private float _elapsedTime = 0f;
 
     public event UnityAction TargetFound;
     public event UnityAction TargetLost;
@@ -20,8 +23,8 @@ public class LookAt : MonoBehaviour
         {
             if (enemy.IsDead == false)
             {
-                if (_coroutine != null)
-                    StopCoroutine(_coroutine);
+                if (_rotateToStartPositionInJob != null)
+                    StopCoroutine(_rotateToStartPositionInJob);
 
                 enemy.Died += OnDied;
 
@@ -40,51 +43,30 @@ public class LookAt : MonoBehaviour
     {
         if (other.TryGetComponent<Enemy>(out Enemy enemy))
         {
-            enemy.Died -= OnDied;//может sourceObject переименовать
-
-            
+            enemy.Died -= OnDied;
 
             TargetLost?.Invoke();
-            _coroutine = StartCoroutine(SetStartRotation());
+            _rotateToStartPositionInJob = StartCoroutine(RotateToStartPosition(_durationSmoothingRotation));
         }
     }
 
-    private void OnDied()//переписать
+    private void OnDied()
     {
-        //_aimConstraint.weight = 0;
-        //_aimConstraint.RemoveSource(0);//MAGIC INT и возможно нужно убрать дубляж
-        //SetStartRotation();
-        _coroutine = StartCoroutine(SetStartRotation());
+        _rotateToStartPositionInJob = StartCoroutine(RotateToStartPosition(_durationSmoothingRotation));
     }
 
-    //private void SetStartRotation()
-    //{
-
-    //    Debug.Log("SetStartRotation");
-    //    Quaternion targetRotation = new Quaternion(0, 0, 0, 1);
-
-    //    transform.DORotateQuaternion(targetRotation, 8f).WaitForKill();
-    //}
-
-    private IEnumerator SetStartRotation()//rename
+    private IEnumerator RotateToStartPosition(float duration)
     {
-        float duration = 2f;
-        float elapsed = 0;
-
-        while (elapsed < duration)
+        while (_elapsedTime < duration)
         {
-            Debug.Log(elapsed + "elapsed");
-            Debug.Log(elapsed / duration + "elapsed / duration");//ПОСЛЕ СМЕРТИ СДЕЛАТЬ ДОЛЬШЕ ЗАДЕРЖКУ 
-            elapsed += Time.deltaTime;
-            _aimConstraint.weight = Mathf.Lerp(_aimConstraint.weight, 0, elapsed / duration);
+            _elapsedTime += Time.deltaTime;
+            _aimConstraint.weight = Mathf.Lerp(_aimConstraint.weight, _minValueWeight, _elapsedTime / duration);
 
-            if (_aimConstraint.weight == 0)
-                _aimConstraint.RemoveSource(0);//MAGIC INT
+            if (_aimConstraint.weight == _minValueWeight)
+                _aimConstraint.RemoveSource(indexOfRemoveTargetObject);
 
             yield return null;
         }
-
-        //MAGIC INT
-        Debug.Log("_aimConstraint.RemoveSource(0)");
+        _elapsedTime = 0;
     }
 }
