@@ -34,7 +34,6 @@ public class AttackHandler : MonoBehaviour
             
             if (_iceSkill.IsClicked)
             {
-                Debug.Log("AttackHandler");
                 enemy.TakeDamage(_iceSkill.Damage);
                 enemySkillsEffect.ApplyIceAttackEffect();
                 _iceSkill.DisactivateSkill();
@@ -56,7 +55,6 @@ public class AttackHandler : MonoBehaviour
     }
     private void OnIceSkillButtonClick()
     {
-        Debug.Log("OnIceSkillButtonClick");
         _iceSkill.ActiveSkill();
     }
 
