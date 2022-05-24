@@ -12,6 +12,7 @@ public class LookAt : MonoBehaviour
     private Coroutine _rotateToStartPositionInJob;
     private float _minValueWeight = 0;
     private float _durationSmoothingRotation = 3f;
+    private float _durationWaitAfterAttack = 1.4f;
     private float _elapsedTime = 0f;
 
     public event UnityAction TargetFound;
@@ -32,6 +33,9 @@ public class LookAt : MonoBehaviour
                 ConstraintSource target = new ConstraintSource();
                 target.sourceTransform = enemy.transform;
                 target.weight = _targetWeight;
+
+                TryRemoveSources();
+
                 _aimConstraint.AddSource(target);
 
                 TargetFound?.Invoke();
@@ -52,21 +56,28 @@ public class LookAt : MonoBehaviour
 
     private void OnDied()
     {
-        _rotateToStartPositionInJob = StartCoroutine(RotateToStartPosition(_durationSmoothingRotation));
+        TargetLost?.Invoke();
+        _rotateToStartPositionInJob = StartCoroutine(RotateToStartPosition(_durationSmoothingRotation, _durationWaitAfterAttack));
     }
 
-    private IEnumerator RotateToStartPosition(float duration)
+    private IEnumerator RotateToStartPosition(float durationRotate, float durationWaitAfterAttack = 0f)
     {
-        while (_elapsedTime < duration)
+        yield return new WaitForSeconds(durationWaitAfterAttack);
+
+        while (_elapsedTime < durationRotate)
         {
             _elapsedTime += Time.deltaTime;
-            _aimConstraint.weight = Mathf.Lerp(_aimConstraint.weight, _minValueWeight, _elapsedTime / duration);
-
-            if (_aimConstraint.weight == _minValueWeight)
-                _aimConstraint.RemoveSource(indexOfRemoveTargetObject);
+            _aimConstraint.weight = Mathf.Lerp(_aimConstraint.weight, _minValueWeight, _elapsedTime / durationRotate);
 
             yield return null;
         }
         _elapsedTime = 0;
+    }
+
+    private void TryRemoveSources()
+    {
+        if (_aimConstraint.sourceCount > 0)
+            for (int i = 0; i < _aimConstraint.sourceCount; i++)
+                _aimConstraint.RemoveSource(i);
     }
 }
