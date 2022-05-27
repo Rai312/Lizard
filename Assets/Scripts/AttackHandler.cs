@@ -34,12 +34,14 @@ public class AttackHandler : MonoBehaviour
             
             if (_iceSkill.IsClicked)
             {
+                enemy.DisableCollider();
                 enemy.TakeDamage(_iceSkill.Damage);
                 enemySkillsEffect.ApplyIceAttackEffect();
                 _iceSkill.DisactivateSkill();
             }
             else if (_fireSkill.IsClicked)
             {
+                enemy.DisableCollider();
                 enemy.TakeDamage(_fireSkill.Damage);
                 enemySkillsEffect.ApplyFireAttackEffect();
                 _playerSkillsEffect.ApplyFireAttackEffect();
@@ -47,6 +49,7 @@ public class AttackHandler : MonoBehaviour
             }
             else if (_poisonSkill.IsClicked)
             {
+                enemy.DisableCollider();
                 enemy.TakeDamage(_poisonSkill.Damage);
                 enemySkillsEffect.ApplyPoisoningAttackEffect();
                 _poisonSkill.DisactivateSkill();
