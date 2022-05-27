@@ -2,21 +2,41 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Animations;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class LookAt : MonoBehaviour
 {
     [SerializeField] private AimConstraint _aimConstraint;
 
-    private float _targetWeight = 1f;
-    private int indexOfRemoveTargetObject = 0;
+    private float _minValueWeight = 0f;
+    private float _maxValueWeight = 1f;
     private Coroutine _rotateToStartPositionInJob;
-    private float _minValueWeight = 0;
-    private float _durationSmoothingRotation = 3f;
+    private float _durationSmoothingRotation = 1.5f;
     private float _durationWaitAfterAttack = 1.4f;
     private float _elapsedTime = 0f;
+    private List<Enemy> _sourceEnemies;
+    private List<float> _distances;
+    public int _iterator = 0;
+
 
     public event UnityAction TargetFound;
     public event UnityAction TargetLost;
+
+    private void Awake()
+    {
+        _sourceEnemies = new List<Enemy>(_aimConstraint.sourceCount);
+    }
+
+    private void Start()
+    {
+        _distances = new List<float>();
+
+        for (int i = 0; i < _aimConstraint.sourceCount; i++)
+        {
+            _distances.Add(Vector3.Distance(_aimConstraint.GetSource(i).sourceTransform.position, transform.position));
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -29,17 +49,40 @@ public class LookAt : MonoBehaviour
 
                 enemy.Died += OnDied;
 
-                _aimConstraint.weight = 1;
-                ConstraintSource target = new ConstraintSource();
-                target.sourceTransform = enemy.transform;
-                target.weight = _targetWeight;
+                _sourceEnemies.Add(enemy);
 
-                TryRemoveSources();
-
-                _aimConstraint.AddSource(target);
-
+                for (int i = 0; i < _aimConstraint.sourceCount; i++)
+                {
+                    if (_aimConstraint.GetSource(i).sourceTransform == enemy.transform)
+                    {
+                        ConstraintSource target = _aimConstraint.GetSource(i);
+                        target.weight = 1;
+                        _aimConstraint.SetSource(i, target);
+                    }
+                }
                 TargetFound?.Invoke();
             }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.TryGetComponent<Enemy>(out Enemy enemy))
+        {
+            if (_sourceEnemies.Count > 1)
+            {
+                float minDistance = GetModifiedDistances(_distances).Min();
+                int index = GetModifiedDistances(_distances).IndexOf(minDistance);
+
+                for (int i = 0; i < _aimConstraint.sourceCount; i++)
+                {
+                    if (index == i)
+                    {
+                        ChangeTarget(i);
+                    }
+                }
+            }
+
         }
     }
 
@@ -49,18 +92,32 @@ public class LookAt : MonoBehaviour
         {
             enemy.Died -= OnDied;
 
+            _sourceEnemies.Remove(enemy);
+
+            for (int i = 0; i < _aimConstraint.sourceCount; i++)
+            {
+                if (enemy.transform == _aimConstraint.GetSource(i).sourceTransform)
+                {
+                    SetTarget(i);
+                }
+            }
+
             TargetLost?.Invoke();
-            _rotateToStartPositionInJob = StartCoroutine(RotateToStartPosition(_durationSmoothingRotation));
         }
     }
 
-    private void OnDied()
+    private void OnDied(Enemy enemy)
     {
-        TargetLost?.Invoke();
-        _rotateToStartPositionInJob = StartCoroutine(RotateToStartPosition(_durationSmoothingRotation, _durationWaitAfterAttack));
+        for (int i = 0; i < _aimConstraint.sourceCount; i++)
+        {
+            if (enemy.transform == _aimConstraint.GetSource(i).sourceTransform)
+            {
+                _rotateToStartPositionInJob = StartCoroutine(RotateToStartPosition(_durationSmoothingRotation, i, _durationWaitAfterAttack));
+            }
+        }
     }
 
-    private IEnumerator RotateToStartPosition(float durationRotate, float durationWaitAfterAttack = 0f)
+    private IEnumerator RotateToStartPosition(float durationRotate, int index, float durationWaitAfterAttack = 0)
     {
         yield return new WaitForSeconds(durationWaitAfterAttack);
 
@@ -71,13 +128,41 @@ public class LookAt : MonoBehaviour
 
             yield return null;
         }
+        _aimConstraint.RemoveSource(index);
+
+        _aimConstraint.weight = _maxValueWeight;
         _elapsedTime = 0;
     }
 
-    private void TryRemoveSources()
+    private List<float> GetModifiedDistances(List<float> distances)
     {
-        if (_aimConstraint.sourceCount > 0)
-            for (int i = 0; i < _aimConstraint.sourceCount; i++)
-                _aimConstraint.RemoveSource(i);
+        for (int i = 0; i < _aimConstraint.sourceCount; i++)
+        {
+            distances[i] = Vector3.Distance(_aimConstraint.GetSource(i).sourceTransform.position, transform.position);
+        }
+        return distances;
+    }
+
+    private void ChangeTarget(int indexTarget)
+    {
+        ConstraintSource target = _aimConstraint.GetSource(indexTarget);
+
+        for (int i = 0; i < _aimConstraint.sourceCount; i++)
+        {
+            SetTarget(i);
+
+            if (indexTarget == i)
+            {
+                target.weight = _maxValueWeight;
+                _aimConstraint.SetSource(i, target);
+            }
+        }
+    }
+
+    private void SetTarget(int indexSetTarget)
+    {
+        ConstraintSource retarget = _aimConstraint.GetSource(indexSetTarget);
+        retarget.weight = _minValueWeight;
+        _aimConstraint.SetSource(indexSetTarget, retarget);
     }
 }

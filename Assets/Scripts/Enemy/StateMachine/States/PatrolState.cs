@@ -62,7 +62,7 @@ public class PatrolState : State
         });
     }
 
-    private void OnDied()
+    private void OnDied(Enemy enemy)//убрать
     {
         _sequence.Kill();
     }
