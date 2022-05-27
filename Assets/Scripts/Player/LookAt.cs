@@ -17,8 +17,6 @@ public class LookAt : MonoBehaviour
     private float _elapsedTime = 0f;
     private List<Enemy> _sourceEnemies;
     private List<float> _distances;
-    public int _iterator = 0;
-
 
     public event UnityAction TargetFound;
     public event UnityAction TargetLost;
