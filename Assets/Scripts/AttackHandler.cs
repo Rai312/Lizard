@@ -34,28 +34,34 @@ public class AttackHandler : MonoBehaviour
             
             if (_iceSkill.IsClicked)
             {
-                enemy.DisableCollider();
-                enemy.TakeDamage(_iceSkill.Damage);
+                Attack(enemy, _iceSkill, _iceSkill.Damage);
+
                 enemySkillsEffect.ApplyIceAttackEffect();
-                _iceSkill.DisactivateSkill();
+                
             }
             else if (_fireSkill.IsClicked)
             {
-                enemy.DisableCollider();
-                enemy.TakeDamage(_fireSkill.Damage);
+                Attack(enemy, _fireSkill, _fireSkill.Damage);
+
                 enemySkillsEffect.ApplyFireAttackEffect();
                 _playerSkillsEffect.ApplyFireAttackEffect();
-                _fireSkill.DisactivateSkill();
             }
             else if (_poisonSkill.IsClicked)
             {
-                enemy.DisableCollider();
-                enemy.TakeDamage(_poisonSkill.Damage);
+                Attack(enemy, _poisonSkill, _poisonSkill.Damage);
+
                 enemySkillsEffect.ApplyPoisoningAttackEffect();
-                _poisonSkill.DisactivateSkill();
             }
         }
     }
+
+    private void Attack(Enemy target, Skill skill, int damage)
+    {
+        target.DisableCollider();
+        target.TakeDamage(damage);
+        skill.DisactivateSkill();
+    }
+
     private void OnIceSkillButtonClick()
     {
         _iceSkill.ActiveSkill();

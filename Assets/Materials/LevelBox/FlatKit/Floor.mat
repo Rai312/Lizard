@@ -112,12 +112,12 @@ Material:
     - _TextureImpact: 1
     - _UVSec: 0
     - _UnityShadowMode: 1
-    - _UnityShadowPower: 0.22
+    - _UnityShadowPower: 0.23
     - _UnityShadowSharpness: 1
     - _VertexColorsEnabled: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.99215686, g: 0.654902, b: 0.5176471, a: 1}
+    - _Color: {r: 1, g: 0.67845315, b: 0.5518868, a: 1}
     - _ColorDim: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorDimExtra: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}

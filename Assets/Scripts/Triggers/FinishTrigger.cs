@@ -7,7 +7,7 @@ public class FinishTrigger : MonoBehaviour
     [SerializeField] private ParticleSystem _finishParticles;
     [SerializeField] private DoorAnimationController _doorAnimationController;
 
-    private float _durationWaitAfterFinishing = 2.5f;
+    private float _durationWaitAfterFinishing = 1.9f;
 
     public event UnityAction Finished;
 
