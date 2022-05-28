@@ -9,6 +9,7 @@ public abstract class Enemy : MonoBehaviour
     private BoxCollider _boxCollider;
 
     public event UnityAction<Enemy> Died;
+
     public int Health => _health;
     public bool IsDead { get; private set; } = false;
 

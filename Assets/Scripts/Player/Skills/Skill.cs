@@ -4,15 +4,26 @@ using UnityEngine.UI;
 
 public abstract class Skill : MonoBehaviour
 {
-    [SerializeField] private LookAt _lookAt;
+    [SerializeField] private HeadController _lookAt;
     [SerializeField] private int _damage;
     [SerializeField] protected Button SkillButton;
     [SerializeField] protected TongueAnimationController TongueAnimationController;
     [SerializeField] protected TongueMaterialChanger TongueMaterialChanger;
 
+    public event UnityAction SkillButtonClick;
+
     public bool IsClicked { get; private set; }
     public int Damage => _damage;
-    public event UnityAction SkillButtonClick;
+
+    public void ActiveSkill()
+    {
+        IsClicked = true;
+    }
+
+    public void DisactivateSkill()
+    {
+        IsClicked = false;
+    }
 
     protected virtual void OnEnable()
     {
@@ -29,16 +40,6 @@ public abstract class Skill : MonoBehaviour
     protected virtual void OnClickSkillButton()
     {
         SkillButtonClick?.Invoke();
-    }
-
-    public void ActiveSkill()
-    {
-        IsClicked = true;
-    }
-
-    public void DisactivateSkill()
-    {
-        IsClicked = false;
     }
 
     private void OnTargetFound()
